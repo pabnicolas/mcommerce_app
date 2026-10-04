@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39617769189",
+    "project_id": "primogas-mcommerce",
+    "storage_bucket": "primogas-mcommerce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39617769189:android:be6708e0512407a668ae0c",
+        "android_client_info": {
+          "package_name": "com.example.mcommerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb4unUW1ETqV139CFL97FsteN-ZK3gTzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
