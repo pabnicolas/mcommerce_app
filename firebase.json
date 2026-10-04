@@ -1,1 +1,28 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"primogas-mcommerce","appId":"1:39617769189:android:be6708e0512407a668ae0c","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"primogas-mcommerce","configurations":{"android":"1:39617769189:android:be6708e0512407a668ae0c","web":"1:39617769189:web:d18631d8b4b594c468ae0c"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "primogas-mcommerce",
+          "appId": "1:39617769189:android:be6708e0512407a668ae0c",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "primogas-mcommerce",
+          "configurations": {
+            "android": "1:39617769189:android:be6708e0512407a668ae0c",
+            "web": "1:39617769189:web:d18631d8b4b594c468ae0c"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "asia-southeast1",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}
