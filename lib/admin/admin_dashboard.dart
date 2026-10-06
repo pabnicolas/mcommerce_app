@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import 'product_management_screen.dart';
+import 'orders_management_screen.dart';
+import 'users_management_screen.dart';
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -12,10 +14,10 @@ class AdminDashboard extends StatefulWidget {
 class _AdminDashboardState extends State<AdminDashboard> {
   int _index = 0;
 
-  final _pages = const [
+    final _pages = const [
     ProductManagementScreen(),
-    Center(child: Text('Orders - coming next')),
-    Center(child: Text('Users - coming next')),
+    OrdersManagementScreen(),
+    UsersManagementScreen(),
   ];
 
   @override
