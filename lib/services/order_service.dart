@@ -51,4 +51,22 @@ class OrderService {
   Future<void> updateOrderStatus(String orderId, String status) {
     return _db.collection('orders').doc(orderId).update({'status': status});
   }
+    // The logged-in user's orders, newest first. Updates in real time.
+  Stream<List<AppOrder>> getUserOrders() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return const Stream.empty();
+
+    return _db
+        .collection('orders')
+        .where('userId', isEqualTo: user.uid)
+        .snapshots()
+        .map((snapshot) {
+      final orders =
+          snapshot.docs.map((doc) => AppOrder.fromFirestore(doc)).toList();
+      // Sorted here instead of in the query, so no Firestore index is needed.
+      orders.sort((a, b) => (b.timestamp ?? DateTime.now())
+          .compareTo(a.timestamp ?? DateTime.now()));
+      return orders;
+    });
+  }
 }

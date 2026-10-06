@@ -7,6 +7,7 @@ import '../services/product_service.dart';
 import '../widgets/product_card.dart';
 import 'cart_screen.dart';
 import 'product_details_screen.dart';
+import 'orders_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final pages = [
       _productGrid(),
       const CartScreen(),
-      const Center(child: Text('Orders coming soon')),
+      const OrdersScreen(),
     ];
 
     return Scaffold(
