@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('M-Commerce',
+              const Text('Primo Gas',
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
               const SizedBox(height: 24),
               TextField(
