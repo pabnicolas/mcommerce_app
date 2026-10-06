@@ -6,6 +6,8 @@ import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'providers/cart_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'admin/admin_dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,20 +40,37 @@ class MyApp extends StatelessWidget {
 }
 
 // Shows Login when signed out and Home when signed in.
+// Login when signed out, then Admin Dashboard or Home depending on the role.
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const loading = Scaffold(body: Center(child: CircularProgressIndicator()));
+
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-              body: Center(child: CircularProgressIndicator()));
+      builder: (context, authSnapshot) {
+        if (authSnapshot.connectionState == ConnectionState.waiting) {
+          return loading;
         }
-        if (snapshot.hasData) return const HomeScreen();
-        return const LoginScreen();
+        final user = authSnapshot.data;
+        if (user == null) return const LoginScreen();
+
+        return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .snapshots(),
+          builder: (context, roleSnapshot) {
+            if (roleSnapshot.connectionState == ConnectionState.waiting) {
+              return loading;
+            }
+            final role = roleSnapshot.data?.data()?['role'];
+            if (role == 'admin') return const AdminDashboard();
+            return const HomeScreen();
+          },
+        );
       },
     );
   }
