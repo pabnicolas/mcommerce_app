@@ -9,6 +9,7 @@ class AuthService {
   Future<String?> register({
     required String name,
     required String email,
+    required String address,
     required String password,
   }) async {
     try {
@@ -20,6 +21,7 @@ class AuthService {
       await _db.collection('users').doc(cred.user!.uid).set({
         'name': name,
         'email': email,
+        'address': address,
         'role': 'user',
         'createdAt': FieldValue.serverTimestamp(),
       });

@@ -42,6 +42,7 @@ class UsersManagementScreen extends StatelessWidget {
                       columns: const [
                         DataColumn(label: Text('Name')),
                         DataColumn(label: Text('Email')),
+                        DataColumn(label: Text('Address')),
                         DataColumn(label: Text('Role')),
                         DataColumn(label: Text('Registered')),
                       ],
@@ -50,6 +51,7 @@ class UsersManagementScreen extends StatelessWidget {
                         return DataRow(cells: [
                           DataCell(Text(data['name'] ?? '')),
                           DataCell(Text(data['email'] ?? '')),
+                          DataCell(Text(data['address'] ?? '')),
                           DataCell(Text(data['role'] ?? '')),
                           DataCell(Text(_formatDate(data['createdAt']))),
                         ]);

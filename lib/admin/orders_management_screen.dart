@@ -49,6 +49,7 @@ class OrdersManagementScreen extends StatelessWidget {
                       columns: const [
                         DataColumn(label: Text('Date')),
                         DataColumn(label: Text('Customer')),
+                        DataColumn(label: Text('Address')),
                         DataColumn(label: Text('Products Ordered')),
                         DataColumn(label: Text('Total')),
                         DataColumn(label: Text('Status')),
@@ -60,6 +61,7 @@ class OrdersManagementScreen extends StatelessWidget {
                         return DataRow(cells: [
                           DataCell(Text(_formatDate(order.timestamp))),
                           DataCell(Text(order.customerName)),
+                          DataCell(Text(order.address)),
                           DataCell(Text(products)),
                           DataCell(Text('₱${order.total.toStringAsFixed(2)}')),
                           DataCell(

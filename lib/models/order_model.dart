@@ -4,6 +4,7 @@ class AppOrder {
   final String id;
   final String userId;
   final String customerName;
+  final String address;
   final double total;
   final String status;
   final DateTime? timestamp;
@@ -13,6 +14,7 @@ class AppOrder {
     required this.id,
     required this.userId,
     required this.customerName,
+    required this.address,
     required this.total,
     required this.status,
     required this.timestamp,
@@ -25,6 +27,7 @@ class AppOrder {
       id: doc.id,
       userId: data['userId'] ?? '',
       customerName: data['customerName'] ?? '',
+      address: data['address'] ?? '',
       total: (data['total'] as num?)?.toDouble() ?? 0,
       status: data['status'] ?? 'Pending',
       timestamp: (data['timestamp'] as Timestamp?)?.toDate(),

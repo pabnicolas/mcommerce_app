@@ -19,6 +19,7 @@ class OrderService {
       await _db.collection('orders').add({
         'userId': user.uid,
         'customerName': name,
+        'address': userDoc.data()?['address'] ?? '',
         'items': items
             .map((i) => {
                   'productId': i.product.id,

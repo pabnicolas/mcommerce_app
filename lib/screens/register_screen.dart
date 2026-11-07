@@ -11,6 +11,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
+  final _addressController = TextEditingController();
   final _passwordController = TextEditingController();
   final _authService = AuthService();
   bool _loading = false;
@@ -19,6 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
+    _addressController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -26,8 +28,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<void> _register() async {
     final name = _nameController.text.trim();
     final email = _emailController.text.trim();
+    final address = _addressController.text.trim();
     final password = _passwordController.text;
-    if (name.isEmpty || email.isEmpty || password.isEmpty) {
+    if (name.isEmpty || email.isEmpty || address.isEmpty || password.isEmpty) {
       _showMessage('Please fill in all fields');
       return;
     }
@@ -37,13 +40,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
     setState(() => _loading = true);
     final error = await _authService.register(
-        name: name, email: email, password: password);
+        name: name, email: email, password: password, address: address);
     if (!mounted) return;
     setState(() => _loading = false);
     if (error != null) {
       _showMessage(error);
     } else {
-      // Close this screen so the Home Screen underneath is visible.
       Navigator.of(context).pop();
     }
   }
@@ -73,6 +75,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                     labelText: 'Email', border: OutlineInputBorder()),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _addressController,
+                maxLines: 2,
+                decoration: const InputDecoration(
+                    labelText: 'Delivery Address',
+                    border: OutlineInputBorder()),
               ),
               const SizedBox(height: 16),
               TextField(
